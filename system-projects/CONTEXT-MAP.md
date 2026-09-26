@@ -2,4 +2,5 @@
 
 - **Global Context**: ./CONTEXT.md (Company-wide business terminology)
 - **Projects**:
-  - *(New projects will be mapped here)*
+  - [Luster-EG-System](../Luster-EG-System/CONTEXT.md): Central operations, inventory quarantine, and COD financial reconciliation
+
