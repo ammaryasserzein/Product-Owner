@@ -9,6 +9,8 @@ Checks staged files (or all tracked files with --all):
 3. Non-Wayfinding tickets under `.scratch/*/issues/*.md` use canonical triage
    roles for `**Status:**` and omit Windows drive paths / `%TEMP%` above
    `## Comments`.
+4. Schoolvoice specs, presenter notes, and active `.scratch/` spec/ticket docs
+   avoid `_Avoid_` synonyms declared in `Schoolvoice/GLOSSARY.md`.
 """
 
 from __future__ import annotations
@@ -19,6 +21,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+SCHOOLVOICE_GLOSSARY = ROOT / "Schoolvoice" / "GLOSSARY.md"
 VALID_TRIAGE_STATUSES = {
     "needs-triage",
     "needs-info",
@@ -29,6 +32,7 @@ VALID_TRIAGE_STATUSES = {
 EMBED_RE = re.compile(r"!\[\[(assets/[^|\]]+)(?:\|[^\]]+)?\]\]")
 STATUS_RE = re.compile(r"^\*{0,2}Status:\*{0,2}\s*([a-zA-Z0-9_-]+)\s*$", re.MULTILINE)
 WINDOWS_PATH_RE = re.compile(r"(?:[A-Za-z]:\\|%TEMP%)")
+AVOID_LINE_RE = re.compile(r"^_Avoid_:\s*(.+)$", re.MULTILINE)
 
 
 def get_target_files(check_all: bool) -> list[Path]:
@@ -40,6 +44,32 @@ def get_target_files(check_all: bool) -> list[Path]:
     out = subprocess.check_output(cmd, cwd=ROOT)
     paths = [p for p in out.decode("utf-8", errors="replace").split("\0") if p]
     return [ROOT / p for p in paths if (ROOT / p).is_file()]
+
+
+CANONICAL_TERM_RE = re.compile(r"^\*\*([^*]+)\*\*:", re.MULTILINE)
+
+
+def load_schoolvoice_avoided_terms() -> list[str]:
+    if not SCHOOLVOICE_GLOSSARY.is_file():
+        return []
+    text = SCHOOLVOICE_GLOSSARY.read_text(encoding="utf-8", errors="replace")
+    canonical: set[str] = set()
+    for m in CANONICAL_TERM_RE.finditer(text):
+        base = re.sub(r"\([^)]*\)", "", m.group(1)).strip().lower()
+        if base:
+            canonical.add(base)
+
+    terms: list[str] = []
+    for m in AVOID_LINE_RE.finditer(text):
+        for raw_term in m.group(1).split(","):
+            term = re.sub(r"\([^)]*\)", "", raw_term).strip()
+            if not term or term.lower().startswith(("conflating ", "which ")):
+                continue
+            # Never ban a term that is itself a canonical glossary entry
+            if term.lower() in canonical:
+                continue
+            terms.append(term)
+    return sorted(set(terms), key=len, reverse=True)
 
 
 def check_docx_quarantine(files: list[Path]) -> list[str]:
@@ -99,6 +129,42 @@ def check_ticket_hygiene(files: list[Path]) -> list[str]:
     return errors
 
 
+def is_glossary_checked_doc(rel: str) -> bool:
+    if not rel.endswith(".md"):
+        return False
+    if rel.endswith("GLOSSARY.md") or "(Visual).md" in rel:
+        return False
+    return (
+        rel.startswith(".scratch/message-translation-visual-spec/")
+        or "Presenter Notes.md" in rel
+        or rel.startswith("Schoolvoice/docs/01-prd/")
+    )
+
+
+def check_glossary_avoided_terms(files: list[Path]) -> list[str]:
+    avoided = load_schoolvoice_avoided_terms()
+    if not avoided:
+        return []
+    patterns = [(t, re.compile(rf"\b{re.escape(t)}\b", re.IGNORECASE)) for t in avoided]
+    errors: list[str] = []
+    for path in files:
+        rel = path.relative_to(ROOT).as_posix()
+        if not is_glossary_checked_doc(rel):
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        body = text.split("\n## Comments", 1)[0]
+        for idx, line in enumerate(body.splitlines(), start=1):
+            # Allow explicit negation quotes documenting the glossary boundary itself
+            if "_Avoid_" in line or "excluding" in line.lower():
+                continue
+            for term, pat in patterns:
+                if pat.search(line):
+                    errors.append(
+                        f"[glossary-avoid] {rel}:{idx} uses avoided Schoolvoice term '{term}' (see Schoolvoice/GLOSSARY.md)"
+                    )
+    return errors
+
+
 def main() -> int:
     check_all = "--all" in sys.argv[1:]
     files = get_target_files(check_all)
@@ -106,6 +172,7 @@ def main() -> int:
         check_docx_quarantine(files)
         + check_obsidian_embeds(files)
         + check_ticket_hygiene(files)
+        + check_glossary_avoided_terms(files)
     )
     if errors:
         print("Repo pre-commit check FAILED:", file=sys.stderr)

@@ -1,72 +1,48 @@
 ---
 name: export-doc
-description: Export Product-Owner Markdown PRDs/BRDs into executive Word (.docx) deliverables (English and Arabic hybrid) saved directly to OneDrive.
+description: Export Product-Owner Markdown PRDs/BRDs/user stories into audited Word (.docx) deliverables saved to OneDrive (EN/AR) or uploaded directly to Google Drive as native Google Docs.
 ---
 
 # Export Product-Owner Documents
 
-Export any Markdown document (`.md`) from a `Product-Owner` project repository into executive-ready Microsoft Word (`.docx`) deliverables engineered for 1:1 import into Google Docs.
+Compile any Markdown (`.md`) or JSON document model in `Product-Owner` into an audited `.docx` deliverable for OneDrive or direct Google Docs conversion.
 
-## Non-Negotiable Storage Rules
+## Storage Quarantine
 
-- **Destination (Strict)**: Output `.docx` files **ONLY** to OneDrive:
-  `C:\Users\L\OneDrive\3. Product-Owner\<Project-Name>\`
-- **Repo Quarantine**: **NEVER** save `.docx` files into the Git repository (`C:\Users\L\Documents\Product-Owner\`). Markdown remains the sole format in the repo to prevent token bloat and AI indexing confusion.
+- **Repo quarantine**: Write `.docx` files strictly to `%TEMP%` (for Google Drive upload, deleting after verification) or `C:\Users\L\OneDrive\3. Product-Owner\<Project-Name>\`. `build_docx.py` enforces this boundary and refuses repo-internal targets.
+- **No temporary files left in repo**: Save intermediate JSON models and temp `.docx` files strictly in `[System.IO.Path]::GetTempPath()`.
 
-## Output Specifications
+## Delivery Modes
 
-Every exported document produces a dual-copy pair:
-1. **English Version (`<Name>-EN.docx`)**:
-   - Direction: LTR.
-   - Typography: Aptos / Arial, executive color palette (`#17365D`, `#1F4E78`, `#2F5597`).
-   - Centered LTR `PAGE / NUMPAGES` footer without `w:updateFields=1`.
-2. **Modern Executive Arabic Hybrid Version (`<Name>-AR.docx`)**:
-   - Translation: Provide an accurate, high-quality translation of the main markdown body into full Arabic prose.
-   - Direction: Explicit RTL base (`w:bidi=1`, logical `w:jc="start"`).
-   - Typography: Strict mirroring of English typography (Aptos / Arial) and executive color palette (`#17365D`, `#1F4E78`, `#2F5597`) for identical layout fidelity.
-   - Embedded Terms: English code, URLs, and terms wrapped in directional LTR spans (`w:rtl=0`).
-   - Bilingual Glossary Table: Placed immediately after the title block with exactly two columns:
-     `المصطلح العربي | English System Term`
-   - Visual Table Direction: Explicit `w:bidiVisual=1`.
+1. **Google Docs Direct Upload (`--en-only` / single Markdown)**:
+   - Build in `%TEMP%` directly from Markdown via `build_docx.py --markdown`, audit with `audit_docx.py --source-md`, upload with `gdrive mutate upload <temp.docx> --mime-type "application/vnd.google-apps.document"`, verify live metadata + round-trip export, then delete `<temp.docx>`.
+2. **OneDrive Executive Pair (EN + AR Hybrid)**:
+   - **English (`<Name>-EN.docx`)**: LTR, Aptos, `#17365D` / `#1F4E78` / `#2F5597` palette.
+   - **Arabic Hybrid (`<Name>-AR.docx`)**: Translated prose with explicit RTL (`direction: "rtl"`), mirrored palette, bilingual glossary table (`المصطلح العربي | English System Term`), saved to `C:\Users\L\OneDrive\3. Product-Owner\<Project-Name>\`.
 
-## Pipeline Execution
+## Pipeline
 
-### Setup Variables
 ```powershell
-$SCRIPTS = "C:/Users/L/.gemini/config/skills/arabic-word-production/scripts"
-$OUT_DIR = "C:/Users/L/OneDrive/3. Product-Owner/<Project-Name>"
+$SCRIPTS = "c:/Users/L/Documents/Product-Owner/.gemini/skills/export-doc/scripts"
 $TEMP_DIR = [System.IO.Path]::GetTempPath()
+
+# 1. Verify environment
+py -3 "$SCRIPTS/check_environment.py"
+
+# 2a. Markdown -> Google Docs fast path
+$TARGET = "$TEMP_DIR/My-Doc.docx"
+py -3 "$SCRIPTS/build_docx.py" --markdown "<source.md>" $TARGET
+py -3 "$SCRIPTS/audit_docx.py" $TARGET --source-md "<source.md>"
+# Upload via gdrive mutate upload $TARGET --parent <FOLDER_ID> --mime-type "application/vnd.google-apps.document"
+# Remove-Item $TARGET after verifying live Google Doc
+
+# 2b. JSON model -> OneDrive executive pair
+py -3 "$SCRIPTS/build_docx.py" "$TEMP_DIR/<Name>-EN.json" "C:/Users/L/OneDrive/3. Product-Owner/<Project>/<Name>-EN.docx"
+py -3 "$SCRIPTS/audit_docx.py" "C:/Users/L/OneDrive/3. Product-Owner/<Project>/<Name>-EN.docx"
 ```
 
-### Fast Path (Deterministic Build & Audit)
+## Completion Criteria
 
-1. **Verify Environment**:
-   ```powershell
-   py -3 "$SCRIPTS/check_environment.py"
-   ```
-
-2. **Construct JSON Document Model**:
-   Model must satisfy `validate_model()` in `$SCRIPTS/doc_model.py`.
-   - **Crucial Rule:** Save the generated JSON models ONLY to `$TEMP_DIR` or memory, never to the local repository.
-   - Required root keys: `title` (string), `blocks` (list).
-   - Supported block types: `heading` (level 1 or 2), `paragraph`, `list`, `table`, `callout` (`note` or `warning`), `page_break`, `image`.
-
-3. **Compile and Audit Documents (Batch Process)**:
-   ```powershell
-   $DOC_NAMES = @("BRD-Name", "PRD-Name") # Replace with actual document base names
-   foreach ($doc in $DOC_NAMES) {
-       foreach ($lang in @("EN", "AR")) {
-           $model = "$TEMP_DIR/${doc}-${lang}.json"
-           $target = "$OUT_DIR/${doc}-${lang}.docx"
-           py -3 "$SCRIPTS/build_docx.py" $model $target
-           py -3 "$SCRIPTS/audit_docx.py" $target
-       }
-   }
-   ```
-
-### Completion Criteria
-
-A build is complete **only** when:
-- Both files exist in `C:\Users\L\OneDrive\3. Product-Owner\<Project-Name>\`.
-- `audit_docx.py` returns `"passed": true` with zero findings for both files.
-- Zero `.docx` or binary artifacts were committed or written to `C:\Users\L\Documents\Product-Owner\`.
+- `audit_docx.py` returns `"passed": true` with `0` findings.
+- For Google Drive mode: `gdrive readonly info` confirms `mimeType: application/vnd.google-apps.document` and temp `.docx` is deleted.
+- Zero `.docx` files exist inside `c:\Users\L\Documents\Product-Owner\`.
