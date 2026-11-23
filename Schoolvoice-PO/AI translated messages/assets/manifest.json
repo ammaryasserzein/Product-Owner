@@ -1,0 +1,483 @@
+{
+  "schema_version": 1,
+  "figma_file_key": "u80rNkcoLIUYWp8dPpxbal",
+  "board_canvas_node_id": "427:3015",
+  "feature_section_node_id": "2102:36435",
+  "feature_section_name": "AI Translation Feature",
+  "acquisition_strategy": "two-call-board-slice",
+  "figma_read_calls_spent": 2,
+  "fallback_needed": false,
+  "story_4_quota_toast_on_board": false,
+  "cached_board_assets": {
+    "metadata_xml": {
+      "filename": "board-427-3015-metadata.xml",
+      "node_id": "427:3015",
+      "bytes": 6048372
+    },
+    "composite_png": {
+      "filename": "board-2102-36435.png",
+      "node_id": "2102:36435",
+      "width": 8039,
+      "height": 4672,
+      "bytes": 2478553,
+      "coordinate_transform": {
+        "offset_x": 40,
+        "offset_y": 40,
+        "scale": 1.0
+      }
+    }
+  },
+  "mappings": [
+    {
+      "target_section": "Header — Top-level Design Board Link (skipped per spec US#9)",
+      "source_line": 519,
+      "figma_node_id": "427:3015",
+      "framing": null,
+      "filename": null,
+      "source": null,
+      "status": "skipped_overview_board",
+      "note": "Top-level Wireframes canvas (427:3015) omitted from inline document embeds per spec; Message Translation section is 2102:36435.",
+      "width": null,
+      "height": null
+    },
+    {
+      "target_section": "Story 2 — Design header link (4-screen translation flow)",
+      "source_line": 586,
+      "figma_node_id": "1991:30823",
+      "framing": "full",
+      "filename": "s2-design-translate-flow-full.png",
+      "source": "board-slice",
+      "layout_hint": "four-phone-flow",
+      "alt_text": "Story 2 end-to-end 3-dot translation flow: original Arabic, overflow menu, loading spinner, and translated English",
+      "width": 1840,
+      "height": 1151
+    },
+    {
+      "target_section": "Story 2 — Entry Point: All Messages Feed (Recipient) ⋮ menu",
+      "source_line": 606,
+      "figma_node_id": "1987:27319",
+      "framing": "crop",
+      "filename": "s2-entry-feed-menu-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "All Messages feed card with open 3-dot menu showing Translate to English with edit pencil icon, Copy, and Read",
+      "width": 430,
+      "height": 250
+    },
+    {
+      "target_section": "Story 2 — Entry Point: Message Details (Recipient) ⋮ menu",
+      "source_line": 607,
+      "figma_node_id": "2002:45880",
+      "framing": "crop",
+      "filename": "s2-entry-details-recipient-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "Recipient Message Details screen showing open 3-dot menu with Translate to Arabic and edit pencil icon",
+      "width": 430,
+      "height": 262
+    },
+    {
+      "target_section": "Story 2 — Entry Point: Message Details (Sender / Staff) ⋮ menu",
+      "source_line": 608,
+      "figma_node_id": "1904:25783",
+      "parent_section_node_id": "2008:60987",
+      "framing": "crop",
+      "filename": "s2-entry-details-sender-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "Staff Sender Message Details screen with Reminder/Recall header actions and open 3-dot Translate menu",
+      "width": 430,
+      "height": 262
+    },
+    {
+      "target_section": "Story 2 — Entry Point: Long-Press Gesture (Feed Only) bottom sheet",
+      "source_line": 612,
+      "figma_node_id": "2001:40488",
+      "framing": "crop",
+      "filename": "s2-long-press-sheet-crop.png",
+      "source": "board-slice",
+      "layout_hint": "sheet-crop",
+      "alt_text": "Long-press bottom sheet over dimmed feed message card showing Translate to English with edit pencil icon, Copy, and Read",
+      "width": 430,
+      "height": 331
+    },
+    {
+      "target_section": "Story 2 — Translating [3 dot menu & Long pressing]: Translate row with edit pencil icon",
+      "source_line": 619,
+      "figma_node_id": "1869:21564",
+      "framing": "crop",
+      "filename": "s2-entry-feed-menu-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "reused_from": "1987:27319 (pixel-identical to 1869:21564)",
+      "alt_text": "Menu row showing Translate to English with edit pencil icon",
+      "width": 430,
+      "height": 250
+    },
+    {
+      "target_section": "Story 2 — Translating State (Loading): Feed Loading UI",
+      "source_line": 635,
+      "figma_node_id": "1990:32259",
+      "framing": "crop",
+      "filename": "s2-loading-feed-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "Dimmed feed message card with centered loading spinner while adjacent feed card remains active",
+      "width": 430,
+      "height": 354
+    },
+    {
+      "target_section": "Story 2 — Translating State (Loading): Message Details Loading UI",
+      "source_line": 636,
+      "figma_node_id": "2002:45988",
+      "framing": "crop",
+      "filename": "s2-loading-details-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "Message Details card dimmed with centered loading spinner while header and Attachments remain interactive",
+      "width": 430,
+      "height": 424
+    },
+    {
+      "target_section": "Story 2 — Translated State Display: In-place translated message body",
+      "source_line": 645,
+      "figma_node_id": "1991:30211",
+      "framing": "crop",
+      "filename": "s2-translated-feed-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "Feed message card displaying in-place English translated body text",
+      "width": 430,
+      "height": 250
+    },
+    {
+      "target_section": "Story 2 — Text Direction & RTL Rules: Arabic translated body renders RTL in English UI",
+      "source_line": 665,
+      "figma_node_id": "2002:46175",
+      "framing": "crop",
+      "filename": "s2-translated-rtl-arabic-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "English-UI Message Details card displaying right-aligned RTL Arabic translated body text",
+      "width": 430,
+      "height": 262
+    },
+    {
+      "target_section": "Story 3 — Design header link (Show Original 3-dot menu full screen)",
+      "source_line": 701,
+      "figma_node_id": "2002:51819",
+      "framing": "full",
+      "filename": "s3-design-show-original-full.png",
+      "source": "board-slice",
+      "layout_hint": "single-phone",
+      "alt_text": "Full mobile screen for Story 3 showing translated feed card with Show Original in the 3-dot menu",
+      "width": 430,
+      "height": 1151
+    },
+    {
+      "target_section": "Story 3 — Entry Point: ⋮ menu displays 'Show Original' without edit pencil icon",
+      "source_line": 712,
+      "figma_node_id": "2002:51819",
+      "framing": "crop",
+      "filename": "s3-show-original-menu-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "3-dot menu on translated card displaying Show Original without edit pencil icon alongside Copy and Read",
+      "width": 430,
+      "height": 250
+    },
+    {
+      "target_section": "Story 3 — Entry Point: Long-press bottom sheet displays 'Show Original' without edit pencil icon",
+      "source_line": 713,
+      "figma_node_id": "2002:53254",
+      "framing": "crop",
+      "filename": "s3-show-original-sheet-crop.png",
+      "source": "board-slice",
+      "layout_hint": "sheet-crop",
+      "alt_text": "Long-press bottom sheet on translated card displaying Show Original without edit pencil icon alongside Copy and Read",
+      "width": 430,
+      "height": 387
+    },
+    {
+      "target_section": "Story 3 — [ACTION - Show Original]: Message body immediately reverts to original source text",
+      "source_line": 720,
+      "figma_node_id": "2002:51415",
+      "parent_section_node_id": "2002:53245",
+      "framing": "crop",
+      "filename": "s3-reverted-original-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "Feed message card reverted immediately to its original Arabic source text",
+      "width": 430,
+      "height": 250
+    },
+    {
+      "target_section": "Story 4 — Daily Translation Quota Toast (Quota Limit Reached Scenario)",
+      "source_line": 764,
+      "figma_node_id": null,
+      "framing": null,
+      "filename": null,
+      "source": null,
+      "status": "not_present_on_board",
+      "note": "Exhaustively verified against full XML metadata of Wireframes canvas 427:3015 and AI Translation section 2102:36435: no Daily Translation Quota toast or Story 4 screen exists on the board.",
+      "width": null,
+      "height": null
+    },
+    {
+      "target_section": "Story 5 — Design header link (Language Picker modal closed full screen)",
+      "source_line": 778,
+      "figma_node_id": "1869:22368",
+      "framing": "full",
+      "filename": "s5-design-language-picker-full.png",
+      "source": "board-slice",
+      "layout_hint": "single-phone",
+      "alt_text": "Full mobile screen for Story 5 showing the Select your translation language modal in its default closed state",
+      "width": 430,
+      "height": 1151
+    },
+    {
+      "target_section": "Story 5 — Entry Point: Edit pencil icon on 'Translate to [Language]' row",
+      "source_line": 788,
+      "figma_node_id": "1869:21564",
+      "framing": "crop",
+      "filename": "s2-entry-feed-menu-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "reused_from": "1987:27319 (pixel-identical to 1869:21564)",
+      "alt_text": "3-dot menu row highlighting the edit pencil icon on Translate to English",
+      "width": 430,
+      "height": 250
+    },
+    {
+      "target_section": "Story 5 — State 1: Language Picker Modal (List Closed)",
+      "source_line": 792,
+      "figma_node_id": "1869:22368",
+      "framing": "crop",
+      "filename": "s5-picker-closed-crop.png",
+      "source": "board-slice",
+      "layout_hint": "modal-crop",
+      "alt_text": "Select your translation language modal with close X button, collapsed English dropdown, Cancel, and Done buttons",
+      "width": 376,
+      "height": 287
+    },
+    {
+      "target_section": "Story 5 — State 2: Language Dropdown List Expanded (5 native scripts + active checkmark)",
+      "source_line": 806,
+      "figma_node_id": "1869:23143",
+      "framing": "crop",
+      "filename": "s5-picker-expanded-crop.png",
+      "source": "board-slice",
+      "layout_hint": "modal-crop",
+      "note": "Also covers active-language highlight and trailing checkmark (legacy Section 1 node 2001:36291 was merged into 1869:23143).",
+      "alt_text": "Expanded language dropdown showing Arabic, highlighted English with blue checkmark, French, Hindi, and Urdu in native scripts with flags",
+      "width": 376,
+      "height": 338
+    },
+    {
+      "target_section": "Story 5 — State 2: Language Selected, Collapsed Field Updated Before Done",
+      "source_line": 815,
+      "figma_node_id": "1904:24484",
+      "framing": "crop",
+      "filename": "s5-picker-selected-before-done-crop.png",
+      "source": "board-slice",
+      "layout_hint": "modal-crop",
+      "alt_text": "Language picker modal updated to show Saudi flag and Arabic label before tapping Done",
+      "width": 376,
+      "height": 287
+    },
+    {
+      "target_section": "Story 5 — [SAVE - Success Scenario]: 3-dot menu updated to new translation language",
+      "source_line": 821,
+      "figma_node_id": "1904:25142",
+      "framing": "crop",
+      "filename": "s5-saved-menu-updated-crop.png",
+      "source": "board-slice",
+      "layout_hint": "card-crop",
+      "alt_text": "3-dot menu updated immediately after saving to show Translate to Arabic with edit pencil icon",
+      "width": 430,
+      "height": 250
+    }
+  ],
+  "files": [
+    {
+      "filename": "s2-design-translate-flow-full.png",
+      "figma_node_id": "1991:30823",
+      "framing": "full",
+      "layout_hint": "four-phone-flow",
+      "width": 1840,
+      "height": 1151,
+      "bytes": 228173,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s2-entry-feed-menu-crop.png",
+      "figma_node_id": "1987:27319",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 250,
+      "bytes": 33162,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s2-entry-details-recipient-crop.png",
+      "figma_node_id": "2002:45880",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 262,
+      "bytes": 34238,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s2-entry-details-sender-crop.png",
+      "figma_node_id": "1904:25783",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 262,
+      "bytes": 35369,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s2-long-press-sheet-crop.png",
+      "figma_node_id": "2001:40488",
+      "framing": "crop",
+      "layout_hint": "sheet-crop",
+      "width": 430,
+      "height": 331,
+      "bytes": 16832,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s2-loading-feed-crop.png",
+      "figma_node_id": "1990:32259",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 354,
+      "bytes": 29329,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s2-loading-details-crop.png",
+      "figma_node_id": "2002:45988",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 424,
+      "bytes": 30262,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s2-translated-feed-crop.png",
+      "figma_node_id": "1991:30211",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 250,
+      "bytes": 20591,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s2-translated-rtl-arabic-crop.png",
+      "figma_node_id": "2002:46175",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 262,
+      "bytes": 23200,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s3-design-show-original-full.png",
+      "figma_node_id": "2002:51819",
+      "framing": "full",
+      "layout_hint": "single-phone",
+      "width": 430,
+      "height": 1151,
+      "bytes": 149443,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s3-show-original-menu-crop.png",
+      "figma_node_id": "2002:51819",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 250,
+      "bytes": 33864,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s3-show-original-sheet-crop.png",
+      "figma_node_id": "2002:53254",
+      "framing": "crop",
+      "layout_hint": "sheet-crop",
+      "width": 430,
+      "height": 387,
+      "bytes": 23049,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s3-reverted-original-crop.png",
+      "figma_node_id": "2002:51415",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 250,
+      "bytes": 19798,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s5-design-language-picker-full.png",
+      "figma_node_id": "1869:22368",
+      "framing": "full",
+      "layout_hint": "single-phone",
+      "width": 430,
+      "height": 1151,
+      "bytes": 151613,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s5-picker-closed-crop.png",
+      "figma_node_id": "1869:22368",
+      "framing": "crop",
+      "layout_hint": "modal-crop",
+      "width": 376,
+      "height": 287,
+      "bytes": 35126,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s5-picker-expanded-crop.png",
+      "figma_node_id": "1869:23143",
+      "framing": "crop",
+      "layout_hint": "modal-crop",
+      "width": 376,
+      "height": 338,
+      "bytes": 28235,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s5-picker-selected-before-done-crop.png",
+      "figma_node_id": "1904:24484",
+      "framing": "crop",
+      "layout_hint": "modal-crop",
+      "width": 376,
+      "height": 287,
+      "bytes": 34893,
+      "source": "board-slice"
+    },
+    {
+      "filename": "s5-saved-menu-updated-crop.png",
+      "figma_node_id": "1904:25142",
+      "framing": "crop",
+      "layout_hint": "card-crop",
+      "width": 430,
+      "height": 250,
+      "bytes": 34294,
+      "source": "board-slice"
+    }
+  ]
+}

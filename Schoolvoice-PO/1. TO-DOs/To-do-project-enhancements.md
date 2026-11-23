@@ -1,0 +1,1 @@
+- [ ] Update `Schoolvoice/CONTEXT.md` with the 8 Actionable Message types (vs. Chat / Replies / Stories) and clarify/reconcile AI Message Translation scope (whether it applies strictly to Actionable Messages excluding Emergency Alert, or also other message kinds)

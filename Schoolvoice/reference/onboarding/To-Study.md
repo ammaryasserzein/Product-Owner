@@ -1,0 +1,9 @@
+- [ ] Scrum best practices
+- [ ] Scrum Agile 
+- [ ] Documentaion. 
+- [ ] Agile manifesto
+- [ ] agile development
+- [ ] to take overview about.
+- [ ] AI skills we use
+- [ ] AI tools we use
+- [ ] 

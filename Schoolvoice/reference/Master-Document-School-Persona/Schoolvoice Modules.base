@@ -1,0 +1,82 @@
+filters:
+  and:
+    - 'file.ext == "md"'
+    - or:
+      - 'file.inFolder("Schoolvoice/reference/Master-Document-School-Persona")'
+      - 'file.inFolder("reference/Master-Document-School-Persona")'
+formulas:
+  kind_badge: 'if(category == "hub", "🏠 Cockpit", if(category == "architecture", "🧠 Mental Model", if(category == "foundation", "🧭 Overview", if(category == "module", "🧩 Module", "🛡️ Governance"))))'
+  gap_status: 'if(po_gaps, "⚠️ Has Gaps / TBAs", "✅ Complete")'
+  priority_badge: 'if(study_priority == 1, "🔴 Read First", "🟡 Deep Dive")'
+properties:
+  formula.kind_badge:
+    displayName: Kind
+  formula.priority_badge:
+    displayName: Study Order
+  layer:
+    displayName: Product Loop / Layer
+  primary_personas:
+    displayName: Personas
+  feature_count:
+    displayName: Items
+  formula.gap_status:
+    displayName: Spec Status
+  summary:
+    displayName: Purpose
+views:
+  - type: cards
+    name: Study Deck (Cards)
+    order:
+      - formula.kind_badge
+      - file.name
+      - formula.priority_badge
+      - layer
+      - primary_personas
+      - summary
+      - formula.gap_status
+    sort:
+      - property: study_priority
+        direction: ASC
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: All Summary Notes
+    order:
+      - formula.kind_badge
+      - file.name
+      - formula.priority_badge
+      - layer
+      - primary_personas
+      - feature_count
+      - formula.gap_status
+      - summary
+    sort:
+      - property: file.name
+        direction: ASC
+    summaries:
+      feature_count: Sum
+  - type: table
+    name: Core Product Modules
+    filters:
+      and:
+        - 'category == "module"'
+    order:
+      - file.name
+      - layer
+      - primary_personas
+      - feature_count
+      - formula.gap_status
+      - summary
+    summaries:
+      feature_count: Sum
+  - type: table
+    name: PO Gaps & TBAs
+    filters:
+      and:
+        - 'po_gaps == true'
+    order:
+      - file.name
+      - status
+      - formula.gap_status
+      - feature_count
+      - summary

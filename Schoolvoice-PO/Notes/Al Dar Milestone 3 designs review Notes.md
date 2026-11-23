@@ -1,0 +1,8 @@
+- actionable messages needs just 1 action and other guardions is updated for this action for example (Acknowledged) 
+- ![[Pasted image 20261118163537.png]] date is next to the tag not involved
+- same logic for every upload
+- all save buttons should be the same size every where
+- error messages (bigger and same size)
+- edit the dance part (fixed size)
+- ![[Pasted image 20261118165225.png]] ! button when we hover pops the explanation (tooltip)
+- 

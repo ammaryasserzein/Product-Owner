@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"3bdf3c3e5b1fdbe3","type":"file","file":"1. TO-DOs/To-do-project-enhancements.md","x":-278,"y":-55,"width":400,"height":400},
+		{"id":"2d6a544d045dad1e","type":"file","file":"1. TO-DOs/1-TO-DO.md","x":367,"y":-560,"width":400,"height":400},
+		{"id":"cdf5a1666aa59023","type":"file","file":"1. TO-DOs/Schoolvoice app To-Do.md","x":-160,"y":-560,"width":400,"height":400},
+		{"id":"d1da683fb18813ae","type":"file","file":"1. TO-DOs/To-Study.md","x":367,"y":-55,"width":400,"height":400},
+		{"id":"a2db2c91c0364cfd","x":80,"y":-840,"width":380,"height":160,"type":"file","file":"1. TO-DOs/TO-get-hired.md"}
+	],
+	"edges":[
+		{"id":"0e53edff0cb1b586","fromNode":"3bdf3c3e5b1fdbe3","fromSide":"right","toNode":"2d6a544d045dad1e","toSide":"bottom"},
+		{"id":"48da3e1656dd4da7","fromNode":"cdf5a1666aa59023","fromSide":"right","toNode":"2d6a544d045dad1e","toSide":"left"},
+		{"id":"bf816bb6d58c2bc5","fromNode":"d1da683fb18813ae","fromSide":"right","toNode":"2d6a544d045dad1e","toSide":"bottom"},
+		{"id":"5b77cf17ef649e3c","fromNode":"2d6a544d045dad1e","fromSide":"left","toNode":"cdf5a1666aa59023","toSide":"right"}
+	]
+}

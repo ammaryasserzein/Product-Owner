@@ -1,0 +1,17 @@
+# Binary deliverables (quarantined to OneDrive / Google Drive)
+*.docx
+
+# Raw one-off exports & large cached Figma board dumps
+raw-exports/
+**/assets/board-*.xml
+**/assets/board-*.png
+
+# Obsidian volatile UI state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json
+
+# Python cache
+__pycache__/
+*.py[cod]

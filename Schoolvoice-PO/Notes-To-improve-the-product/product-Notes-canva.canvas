@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"64d40547ee0d77bb","type":"file","file":"Notes-To-improve-the-product/product-Notes-canva.canvas","x":400,"y":-680,"width":400,"height":400},
+		{"id":"bb456cfd0ce81401","type":"file","file":"Notes-To-improve-the-product/SV logo on the box.png","x":720,"y":-32,"width":400,"height":278},
+		{"id":"cd729b8248fa9080","type":"file","file":"Notes-To-improve-the-product/save button logo is Camera!.png","x":200,"y":-93,"width":269,"height":400}
+	],
+	"edges":[
+		{"id":"331b3478cd7eb765","fromNode":"bb456cfd0ce81401","fromSide":"top","toNode":"64d40547ee0d77bb","toSide":"bottom"},
+		{"id":"ddadd0d8bea819b0","fromNode":"cd729b8248fa9080","fromSide":"top","toNode":"64d40547ee0d77bb","toSide":"bottom"}
+	]
+}

@@ -1,0 +1,10 @@
+- [ ] Scrum best practices
+- [ ] Scrum Agile 
+- [ ] Documentaion. 
+- [ ] Agile manifesto
+- [ ] agile development
+- [ ] to take overview about.
+- [ ] AI skills we use
+- [ ] AI tools we use
+- [ ] moaaz el masry course product managment advanced course (2 years of experience))
+- [ ] a
